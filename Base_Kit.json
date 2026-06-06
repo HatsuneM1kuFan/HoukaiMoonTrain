@@ -1,0 +1,54 @@
+{
+    "Version": "4.4_beta_1",
+    "Characters": [
+        {
+            "Name" : "Firefly",
+            "Element" : "Fire",
+            "Path" : "Destruction",
+            "Rarity" : 5,
+            "Basic stats" : {
+                "hp" : 814,
+                "atk" : 523,
+                "def" : 776,
+                "spd" : 104,
+                "taunt" : 125,
+            },
+
+            "Advanced stats" : {
+                "crate" : 5,
+                "cdmg" : 50,
+                "break effect" : 0,
+                "outgoing healing boost" : 0,
+                "max energy" : 120,
+                "energy regeneration rate" : 100,
+                "effect hit rate" : 0,
+                "effect res" : 0,
+                "elation" : 0
+            },
+
+            "DMG Type" : {
+                "Physical DMG Boost" : 0,
+                "Fire DMG Boost" : 0,
+                "Ice DMG Boost" : 0,
+                "Lightning DMG Boost" : 0,
+                "Wind DMG Boost" : 0,
+                "Quantum DMG Boost" : 0,
+                "Imaginary DMG Boost" : 0,
+                "Physical RES Boost" : 0,
+                "Fire RES Boost" : 0,
+                "Ice RES Boost" : 0,
+                "Lightning RES Boost" : 0,
+                "Wind RES Boost" : 0,
+                "Quantum RES Boost" : 0,
+                "Imaginary RES Boost" : 0
+            },
+            
+            "Abilities" : {
+                "Basic" : {
+
+                }
+            }
+
+        }
+    ]
+}
