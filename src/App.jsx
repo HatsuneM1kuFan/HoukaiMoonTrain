@@ -1,46 +1,54 @@
 import { useState } from 'react'
-import CharacterSelector from './components/Chara_selector'
+import CharacterSelector from './components/CharacterSelector'
 
 function App() {
+  const [activePage, setActivePage] = useState('select')
+  const [team, setTeam] = useState([null, null, null, null])
   const [selectedCharacter, setSelectedCharacter] = useState(null)
 
+  const pages = [
+    { id: 'select', label: 'Team' },
+    { id: 'kit', label: 'Kit' },
+    { id: 'build', label: 'Build' },
+  ]
+
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-8">
-      <h1 className="text-3xl font-bold text-yellow-400 mb-2">HoukaiMoonTrain</h1>
-      <p className="text-gray-400 mb-8">HSR Build Simulator</p>
-
-      <CharacterSelector
-        selected={selectedCharacter}
-        onSelect={setSelectedCharacter}
-      />
-
-      {selectedCharacter && (
-        <div className="mt-8 p-4 bg-gray-900 rounded-lg">
-          <h2 className="text-xl font-medium text-yellow-400">
-            {selectedCharacter.display_name}
-          </h2>
-          <p className="text-gray-400 text-sm mt-1">
-            {selectedCharacter.element} · {selectedCharacter.path}
-          </p>
-          <div className="mt-4 grid grid-cols-4 gap-4">
-            <div>
-              <p className="text-gray-500 text-xs">HP</p>
-              <p className="text-white font-medium">{selectedCharacter.base_stats.HP}</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-xs">ATK</p>
-              <p className="text-white font-medium">{selectedCharacter.base_stats.ATK}</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-xs">DEF</p>
-              <p className="text-white font-medium">{selectedCharacter.base_stats.DEF}</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-xs">SPD</p>
-              <p className="text-white font-medium">{selectedCharacter.base_stats.SPD}</p>
-            </div>
-          </div>
+    <div className="min-h-screen bg-gray-950 text-white p-6">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-white tracking-tight">HoukaiMoonTrain</h1>
+          <p className="text-gray-500 text-sm mt-1">HSR Build Simulator</p>
         </div>
+        <nav className="flex gap-1">
+          {pages.map(page => (
+            <button
+              key={page.id}
+              onClick={() => setActivePage(page.id)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                activePage === page.id
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              {page.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      {activePage === 'select' && (
+        <CharacterSelector
+          team={team}
+          setTeam={setTeam}
+          selectedCharacter={selectedCharacter}
+          setSelectedCharacter={setSelectedCharacter}
+        />
+      )}
+      {activePage === 'kit' && (
+        <div className="text-gray-500 italic text-sm">Kit page coming soon</div>
+      )}
+      {activePage === 'build' && (
+        <div className="text-gray-500 italic text-sm">Build page coming soon</div>
       )}
     </div>
   )
