@@ -1,0 +1,151 @@
+{
+  "character_id": "seele",
+  "display_name": "Seele",
+  "path": "The Hunt",
+  "element": "Quantum",
+
+  "user_config": {
+    "level": 80,
+    "ascension": 6,
+    "traces": {
+      "abilities": {
+        "basic_atk": { "level": 6 },
+        "skill":     { "level": 10 },
+        "ultimate":  { "level": 10 },
+        "talent":    { "level": 10 },
+        "technique": { "unlocked": true }
+      },
+      "major_traces": {
+        "a2": { "unlocked": true },
+        "a4": { "unlocked": true },
+        "a6": { "unlocked": true }
+      },
+      "stat_nodes": [
+        { "id": "atk_1",  "stat": "atk_percent",  "value": 4.0,  "unlocked": true  },
+        { "id": "atk_2",  "stat": "atk_percent",  "value": 6.0,  "unlocked": true  },
+        { "id": "atk_3",  "stat": "atk_percent",  "value": 6.0,  "unlocked": true  },
+        { "id": "hp_1",   "stat": "hp_percent",   "value": 4.0,  "unlocked": true  },
+        { "id": "hp_2",   "stat": "hp_percent",   "value": 6.0,  "unlocked": false },
+        { "id": "def_1",  "stat": "def_percent",  "value": 5.0,  "unlocked": false },
+        { "id": "crit_1", "stat": "crit_rate",    "value": 2.67, "unlocked": true  },
+        { "id": "spd_1",  "stat": "speed",        "value": 2.0,  "unlocked": true  }
+      ]
+    }
+  },
+
+  "kit": {
+    "abilities": {
+      "basic_atk": {
+        "name": "Thrill of Battle",
+        "description": "Deals Quantum DMG equal to {atk_scaling}% of Seele's ATK to a single enemy.",
+        "max_level": 6,
+        "scalings": {
+          "atk_scaling": [50, 60, 70, 80, 90, 100]
+        }
+      },
+      "skill": {
+        "name": "Sheathed Blade",
+        "description": "Increases Seele's SPD by {spd_bonus}% for 2 turn(s) and deals Quantum DMG equal to {atk_scaling}% of Seele's ATK to a single enemy.",
+        "max_level": 10,
+        "scalings": {
+          "spd_bonus":   [25, 25, 25, 25, 25, 25, 25, 25, 25, 25],
+          "atk_scaling": [110, 121, 132, 143, 154, 165, 176, 187, 198, 220]
+        }
+      },
+      "ultimate": {
+        "name": "Butterfly Flurry",
+        "description": "Seele enters the Resurgence state and deals Quantum DMG equal to {atk_scaling}% of her ATK to a single enemy. While in Resurgence, Seele's DMG increases by {dmg_bonus}%.",
+        "max_level": 10,
+        "scalings": {
+          "atk_scaling": [255, 272, 289, 306, 323, 340, 357, 374, 391, 425],
+          "dmg_bonus":   [80, 84, 88, 92, 96, 100, 104, 108, 112, 120]
+        }
+      },
+      "talent": {
+        "name": "Rippling Waves",
+        "description": "After Seele defeats an enemy, she immediately takes action again. This effect can only trigger 1 time per turn. When Seele is in Resurgence, the DMG bonus persists for {resurgence_extend} extra turn(s) after Resurgence ends.",
+        "max_level": 10,
+        "scalings": {
+          "resurgence_extend": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        }
+      },
+      "technique": {
+        "name": "Phantom Seele",
+        "description": "Seele becomes invisible for 20 seconds. When she attacks an enemy while invisible, she enters Resurgence at the start of combat."
+      }
+    },
+    "major_traces": {
+      "a2": {
+        "name": "Lacerate",
+        "ascension_required": 2,
+        "description": "While Seele is in the Resurgence state, all enemies' Quantum RES is reduced by 20%."
+      },
+      "a4": {
+        "name": "Phantom Illusion",
+        "ascension_required": 4,
+        "description": "When Seele uses Skill, the SPD buff duration is extended by 1 turn."
+      },
+      "a6": {
+        "name": "Nightshade",
+        "ascension_required": 6,
+        "description": "At the beginning of each turn, if Seele is not in the Resurgence state, her ATK increases by 15% until the end of the current turn."
+      }
+    }
+  },
+
+  "base_stats": {
+    "speed": 115,
+    "aggro": 75,
+    "growth": [
+      {
+        "ascension": 0,
+        "level_range": [1, 20],
+        "hp":  { "base": 144.0, "per_level": 7.20 },
+        "atk": { "base":  94.0, "per_level": 4.70 },
+        "def": { "base":  57.0, "per_level": 2.85 }
+      },
+      {
+        "ascension": 1,
+        "level_range": [20, 30],
+        "hp":  { "base": 289.0, "per_level": 14.40 },
+        "atk": { "base": 189.0, "per_level":  9.40 },
+        "def": { "base": 114.0, "per_level":  5.70 }
+      },
+      {
+        "ascension": 2,
+        "level_range": [30, 40],
+        "hp":  { "base": 433.0, "per_level": 14.40 },
+        "atk": { "base": 283.0, "per_level":  9.40 },
+        "def": { "base": 171.0, "per_level":  5.70 }
+      },
+      {
+        "ascension": 3,
+        "level_range": [40, 50],
+        "hp":  { "base": 620.0, "per_level": 14.40 },
+        "atk": { "base": 405.0, "per_level":  9.40 },
+        "def": { "base": 245.0, "per_level":  5.70 }
+      },
+      {
+        "ascension": 4,
+        "level_range": [50, 60],
+        "hp":  { "base": 764.0, "per_level": 14.40 },
+        "atk": { "base": 499.0, "per_level":  9.40 },
+        "def": { "base": 302.0, "per_level":  5.70 }
+      },
+      {
+        "ascension": 5,
+        "level_range": [60, 70],
+        "hp":  { "base": 908.0, "per_level": 14.40 },
+        "atk": { "base": 593.0, "per_level":  9.40 },
+        "def": { "base": 359.0, "per_level":  5.70 }
+      },
+      {
+        "ascension": 6,
+        "level_range": [70, 80],
+        "hp":  { "base": 1095.0, "per_level": 14.40 },
+        "atk": { "base":  715.0, "per_level":  9.40 },
+        "def": { "base":  433.0, "per_level":  5.70 }
+      }
+    ]
+  }
+}
