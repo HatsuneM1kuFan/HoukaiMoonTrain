@@ -14,6 +14,12 @@ const ELEMENT_COLORS = {
 export default function CharacterSelector({ roster, team, setTeamSlot }) {
   
   const [search, setSearch] = useState('')
+
+  const handleCharacterClick = (entry) => {
+    const emptySlot = team.findIndex(slot => slot === null)
+    if (emptySlot === -1) return
+    setTeamSlot(emptySlot, entry)
+  }
   
   return (
     <div className = "flex gap-4 h-screen">
@@ -26,7 +32,7 @@ export default function CharacterSelector({ roster, team, setTeamSlot }) {
           />
         <div className = "grid grid-cols-3 gap-2 overflow-y-auto mt-2">
           {Object.values(roster).map(entry => (
-            <div key = {entry.character.char_id}>
+            <div key = {entry.character.char_id} onClick = {() => handleCharacterClick(entry)}>
               <img
                 src = {`/images/${entry.character.char_id}_icon.webp`}
                 alt = {entry.character.display_name}
@@ -38,7 +44,19 @@ export default function CharacterSelector({ roster, team, setTeamSlot }) {
         </div>
       </div>
       <div className = "flex-1">
-
+          <div className = "grid grid-cols-4 gap-2 mt-2">
+            {team.map((slot, i) => (
+              <div key = {i} className = "h-192 bg-gray-900 rounded-xl flex flex-col border border-gray-800" onClick = {() => slot ? setTeamSlot(i, null) : null}>
+                <div className="h-128 flex items-center justify-center">
+                  
+                  {slot ? (<img src = {`/images/${slot.character.char_id}.webp`} className = "w-full h-full object-cover"/>) : (<div className = "relative"> <img src = {`images/empty_slot.png`} className = "h-16 w-16 object-center"/> <p className = "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] text-xl text-black leading-none">+</p></div> )}
+                </div>
+                <div className = "h-64 flex items-center justify-center border-t border-gray-800">
+                  <div className = "relative"> <img src = {`images/empty_slot.png`} className = "h-16 w-16 object-center"/> <p className = "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] text-xl text-black leading-none">+</p></div>
+                </div>
+              </div>
+            ))}
+          </div>
       </div>
     </div>
   )
