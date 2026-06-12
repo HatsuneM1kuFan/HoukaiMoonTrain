@@ -11,13 +11,14 @@ const ELEMENT_COLORS = {
   'Physical': '#d1d5db',
 }
 
-export default function CharacterSelector({ roster, team, setTeamSlot }) {
+export default function CharacterSelector({ roster, team, setTeamSlot, setActiveTeamId, handleAddTeam, teams, activeTeamId, handleTabSwitch }) {
   
   const [search, setSearch] = useState('')
 
   const handleCharacterClick = (entry) => {
     const emptySlot = team.findIndex(slot => slot === null)
     if (emptySlot === -1) return
+    if (team.some(slot => slot?.character.char_id === entry.character.char_id)) return
     setTeamSlot(emptySlot, entry)
   }
   
@@ -30,20 +31,35 @@ export default function CharacterSelector({ roster, team, setTeamSlot }) {
           value = {search}
           onChange = {e => setSearch(e.target.value)}
           />
-        <div className = "grid grid-cols-3 gap-2 overflow-y-auto mt-2">
-          {Object.values(roster).map(entry => (
-            <div key = {entry.character.char_id} onClick = {() => handleCharacterClick(entry)}>
-              <img
-                src = {`/images/${entry.character.char_id}_icon.webp`}
-                alt = {entry.character.display_name}
-                className = "w-full aspect-square object-cover rounded-1g"
-              />
-              <p className = "text-xs text-center text-white mt-1">{entry.character.display_name}</p>
-            </div>
-          ))}
+        <div className = "grid grid-cols-3 gap-2 overflow-y-auto mt-2 p-1">
+          {Object.values(roster).filter(entry => 
+            entry.character.display_name.toLowerCase().includes(search.toLowerCase())
+          ).map(entry => {
+            const inTeam = team.some(slot => slot?.character.char_id === entry.character.char_id)
+            return (
+              <div key = {entry.character.char_id} onClick = {() => handleCharacterClick(entry)}>
+                <img
+                  src = {`/images/${entry.character.char_id}_icon.webp`}
+                  alt = {entry.character.display_name}
+                  className = {`w-full aspect-square object-cover rounded-1g ${inTeam ? 'ring-2 ring-white' : ''}`}
+                />
+                <p className = "text-xs text-center text-white mt-1">{entry.character.display_name}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
       <div className = "flex-1">
+          <div className = "flex gap-2 mb-2">
+            {Object.keys(teams).map(teamId => (
+              <button key={teamId} onClick={() => handleTabSwitch(teamId)} className = {`px-3 py-1 rounded-lg text-sm ${activeTeamId === teamId ? 'bg-gray-400 text-white' : 'bg-gray-800 text-gray-400'}`} >
+              {teamId} 
+              </button>            
+            ))}
+            <button onClick={handleAddTeam} clasName = "px-3 py-1 rounded-lg bg-gray-700 text-white text-sm">
+              +
+            </button>
+          </div>
           <div className = "grid grid-cols-4 gap-2 mt-2">
             {team.map((slot, i) => (
               <div key = {i} className = "h-192 bg-gray-900 rounded-xl flex flex-col border border-gray-800" onClick = {() => slot ? setTeamSlot(i, null) : null}>

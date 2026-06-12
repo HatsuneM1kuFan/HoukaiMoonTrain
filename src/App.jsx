@@ -20,7 +20,29 @@ function App() {
       ...prev,
       [activeTeamId]: prev[activeTeamId].map((slot,i) => i === slotIndex ? rosterEntry : slot)}))} // prev[activeTeamId] is the team we are changing a character in, if i == slotIndex (the slot we want to change), replace with rosterEntry, else keep same slot state.
     
+  const handleAddTeam = () => {
+    const count = Object.keys(teams).length
+    if (count >= 12) return
 
+    const newTeamId = `Team ${count + 1}`
+    setTeams(prev => ({...prev, [newTeamId]: [null, null, null, null]}))
+    setActiveTeamId(newTeamId)
+  }
+  const handleTabSwitch = (newTeamId) => {
+    if (activeTeamId === 'Team 1') {
+      setActiveTeamId(newTeamId)  
+      return }
+    if (teams[activeTeamId].every(slot => slot === null)){
+      setTeams(prev => {
+        const copy = {...prev}
+        delete copy[activeTeamId] 
+        return copy})
+      
+      setActiveTeamId(newTeamId)
+    } else {
+      setActiveTeamId(newTeamId)
+    }
+  }
   return (
     <div className="min-h-screen bg-gray-950 text-white p-6">
       <div className="flex items-center justify-between mb-6">
@@ -50,6 +72,11 @@ function App() {
           roster = {roster}
           team = {activeTeam}
           setTeamSlot = {setTeamSlot}
+          handleAddTeam = {handleAddTeam}
+          setActiveTeamId = {setActiveTeamId}
+          activeTeamId = {activeTeamId}
+          teams = {teams}
+          handleTabSwitch = {handleTabSwitch}
         />
       )}
       {activePage === 'kit' && (
