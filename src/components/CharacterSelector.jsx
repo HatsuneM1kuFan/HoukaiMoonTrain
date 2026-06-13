@@ -16,11 +16,16 @@ export default function CharacterSelector({ roster, team, setTeamSlot, setActive
   const [search, setSearch] = useState('')
 
   const handleCharacterClick = (entry) => {
-    const emptySlot = team.findIndex(slot => slot === null)
-    if (emptySlot === -1) return
-    if (team.some(slot => slot?.character.char_id === entry.character.char_id)) return
-    setTeamSlot(emptySlot, entry)
-  }
+    const charSlot = team.findIndex(slot => slot?.character.char_id === entry.character.char_id)
+    if (charSlot === -1) {
+        const emptySlot = team.findIndex(slot => slot === null)
+        if (emptySlot === -1) {return} else {
+          setTeamSlot(emptySlot, entry)
+        }
+    } else {
+      setTeamSlot(charSlot, null)
+      }
+    }
   
   return (
     <div className = "flex gap-4 h-screen">
